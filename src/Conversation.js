@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Link } from 'react-router-dom';
 import { getMessages } from './apiCalls.js';
 import MessageContainer from './MessageContainer.js';
 

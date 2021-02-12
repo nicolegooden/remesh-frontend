@@ -10,6 +10,7 @@ const ConversationsContainer = (props) => {
         conversationID={conv.conversation_id}
         startDate={startDate}
         title={conv.title}
+        key={conv.conversation_id}
       />
     )
   })

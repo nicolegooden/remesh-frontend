@@ -3,7 +3,7 @@ import { getThoughts } from './apiCalls.js';
 import ThoughtContainer from './ThoughtContainer.js';
 
 const Message = (props) => {
-  const { text } = props;
+  const { text, dateSent } = props;
   const [thoughts, setThoughts] = useState([]);
   const [showingThoughts, setShowingThoughts] = useState(false);
   const buttonText = showingThoughts ? 'Hide Thoughts' : 'View Thoughts';
@@ -16,6 +16,7 @@ const Message = (props) => {
   return (
     <article>
       <p>{text}</p>
+      <p>{dateSent}</p>
       <button onClick={() => setShowingThoughts(!showingThoughts)}>
         {buttonText}
       </button>

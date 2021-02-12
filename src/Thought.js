@@ -1,9 +1,12 @@
 import React from 'react';
 
 const Thought = (props) => {
-  const { text } = props;
+  const { text, dateSent } = props;
   return (
-    <p>{text}</p>
+    <article>
+      <p>{text}</p>
+      <p>{dateSent}</p>
+    </article>
   )
 }
 

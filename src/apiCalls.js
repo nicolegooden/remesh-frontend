@@ -9,3 +9,9 @@ export const getMessages = (conversation) => {
   .then(res => res.json())
   .catch(err => console.log(err))
 }
+
+export const getThoughts = (message) => {
+  return fetch(`http://localhost:3000/api/v1/thoughts/${message}`)
+  .then(res => res.json())
+  .catch(err => console.log(err))
+}

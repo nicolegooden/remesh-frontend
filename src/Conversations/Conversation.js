@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getMessages } from './apiCalls.js';
-import MessageContainer from './MessageContainer.js';
+import { getMessages } from '../apiCalls.js';
+import MessageContainer from '../Messages/MessageContainer.js';
 
 const Conversation = (props) => {
   const { title, startDate } = props;
@@ -15,7 +15,7 @@ const Conversation = (props) => {
 
   return (
     <article>
-      <p>{title}</p>
+      <h1>{title}</h1>
       <p>{startDate}</p>
       <button onClick={() => setShowingMessages(!showingMessages)}>
         {buttonText}

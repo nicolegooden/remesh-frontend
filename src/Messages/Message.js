@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { getThoughts } from './apiCalls.js';
-import ThoughtContainer from './ThoughtContainer.js';
+import { getThoughts } from '../apiCalls.js';
+import ThoughtContainer from '../Thoughts/ThoughtContainer.js';
 
 const Message = (props) => {
   const { text, dateSent } = props;
@@ -15,7 +15,7 @@ const Message = (props) => {
 
   return (
     <article>
-      <p>{text}</p>
+      <h5>{text}</h5>
       <p>{dateSent}</p>
       <button onClick={() => setShowingThoughts(!showingThoughts)}>
         {buttonText}

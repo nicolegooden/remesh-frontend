@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import ConversationContainer from './ConversationContainer.js';
-import { getAllConversations } from './apiCalls.js';
+import ConversationContainer from '../Conversations/ConversationContainer.js';
+import { getAllConversations } from '../apiCalls.js';
 import { Route } from 'react-router-dom';
 
 const App = (props) => {
   const [conversations, setConversations] = useState([]);
+  
   useEffect(() => {
     getAllConversations()
     .then(data => setConversations(data))

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ConversationContainer from './ConversationContainer.js';
 import { getAllConversations } from './apiCalls.js';
+import { Route } from 'react-router-dom';
 
 const App = (props) => {
   const [conversations, setConversations] = useState([]);
@@ -12,7 +13,9 @@ const App = (props) => {
   return (
     <main className="app">
       <h1>Welcome to Remesh</h1>
-      <ConversationContainer conversations={conversations} />
+      <Route exact path='/'>
+        <ConversationContainer conversations={conversations} />
+      </Route>
     </main>
   );
 }

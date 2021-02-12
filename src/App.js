@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import ConversationContainer from './ConversationContainer.js';
+import { getAllConversations } from './apiCalls.js';
 
-function App() {
+const App = (props) => {
+  const [conversations, setConversations] = useState([]);
+  useEffect(() => {
+    getAllConversations()
+    .then(data => setConversations(data))
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="app">
+      <h1>Welcome to Remesh</h1>
+      <ConversationContainer conversations={conversations} />
+    </main>
   );
 }
 

@@ -3,10 +3,11 @@ import { getThoughts } from '../apiCalls.js';
 import ThoughtContainer from '../Thoughts/ThoughtContainer.js';
 
 const Message = (props) => {
-  const { text, dateSent } = props;
+  const { text, dateSent, messageID } = props;
   const [thoughts, setThoughts] = useState([]);
   const [showingThoughts, setShowingThoughts] = useState(false);
-  const buttonText = showingThoughts ? 'Hide Thoughts' : 'View Thoughts';
+  const messageIndicator = thoughts.e ? 'Add First Thought' : 'View Thoughts';
+  const buttonText = showingThoughts ? 'Hide Thoughts' : messageIndicator;
 
   useEffect(() => {
     getThoughts(props.messageID)
@@ -20,7 +21,13 @@ const Message = (props) => {
       <button onClick={() => setShowingThoughts(!showingThoughts)}>
         {buttonText}
       </button>
-      {showingThoughts && <ThoughtContainer thoughts={thoughts} />}
+      {showingThoughts && 
+        <ThoughtContainer 
+          thoughts={thoughts} 
+          messageID={messageID}
+          setThoughts={setThoughts}
+        />
+      }
     </article>
   )
 }

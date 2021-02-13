@@ -3,16 +3,16 @@ import { getMessages } from '../apiCalls.js';
 import MessageContainer from '../Messages/MessageContainer.js';
 
 const Conversation = (props) => {
-  const { title, startDate } = props;
+  const { title, startDate, conversationID } = props;
   const [messages, setMessages] = useState([]);
   const [showingMessages, setShowingMessages] = useState(false);
-  const messageIndicator = messages.e ? 'No messages yet' : 'View Messages';
+  const messageIndicator = messages.e ? 'Add First Message' : 'View Messages';
   const buttonText = showingMessages ? 'Hide Messages' : messageIndicator;
 
   useEffect(() => {
     getMessages(props.conversationID)
     .then(data => setMessages(data)) 
-  }, [])
+  }, [messages, props.conversationID])
 
   return (
     <article>
@@ -21,7 +21,12 @@ const Conversation = (props) => {
       <button onClick={() => setShowingMessages(!showingMessages)}>
         {buttonText}
       </button>
-      {showingMessages && <MessageContainer messages={messages} />}
+      {showingMessages && 
+        <MessageContainer 
+          messages={messages} 
+          conversationID={conversationID}
+        />
+      }
     </article>
   )
 }

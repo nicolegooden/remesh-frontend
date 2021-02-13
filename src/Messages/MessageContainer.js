@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import Message from './Message.js';
-import { postMessage } from '../apiCalls.js';
+import { postMessage, getMessages } from '../apiCalls.js';
 
 const MessageContainer = (props) => {
-  const { messages, conversationID } = props;
+  const { messages, conversationID, setMessages } = props;
   const [messageText, setText] = useState('');
 
   const messageSection = () => {
@@ -31,6 +31,8 @@ const MessageContainer = (props) => {
       text: messageText
     }
     await postMessage(message, conversationID);
+    getMessages(props.conversationID)
+    .then(data => setMessages(data)) 
     setText('');
   }
 

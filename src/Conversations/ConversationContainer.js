@@ -53,6 +53,7 @@ const ConversationsContainer = (props) => {
       title: convTitle
     }
     postConversation(conversation);
+    setConvTitle('');
   }
 
   return (

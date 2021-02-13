@@ -6,6 +6,7 @@ const ConversationsContainer = (props) => {
   const [convSearch, updateSearch] = useState('');
   const [matches, setMatches] = useState([]);
   const [convTitle, setConvTitle] = useState('');
+  const [message, setMessage] = useState('');
 
   let conversations = props.conversations.map(conv => {
     const startDate = conv.start_date.split('T')[0];
@@ -47,13 +48,14 @@ const ConversationsContainer = (props) => {
     setConvTitle(e.target.value);
   }
 
-  const submitTitle = (e) => {
+  const submitTitle = async (e) => {
     e.preventDefault();
     const conversation = {
       title: convTitle
     }
-    postConversation(conversation);
+    await postConversation(conversation);
     setConvTitle('');
+    setMessage('Success!');
   }
 
   return (
@@ -65,6 +67,7 @@ const ConversationsContainer = (props) => {
         onChange={trackTitle}
       />
       <button onClick={submitTitle}>SUBMIT</button>
+      <p>{message}</p>
       <h3>Existing Conversations</h3>
       <input 
         placeholder='search by title...'

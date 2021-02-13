@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Conversation from './Conversation.js';
+import { postConversation } from '../apiCalls.js';
 
 const ConversationsContainer = (props) => {
   const [convSearch, updateSearch] = useState('');
@@ -46,6 +47,14 @@ const ConversationsContainer = (props) => {
     setConvTitle(e.target.value);
   }
 
+  const submitTitle = (e) => {
+    e.preventDefault();
+    const conversation = {
+      title: convTitle
+    }
+    postConversation(conversation);
+  }
+
   return (
     <section>
       <h1>Let's Start a Conversation...</h1>
@@ -54,7 +63,7 @@ const ConversationsContainer = (props) => {
         value={convTitle}
         onChange={trackTitle}
       />
-      <button>SUBMIT</button>
+      <button onClick={submitTitle}>SUBMIT</button>
       <h3>Existing Conversations</h3>
       <input 
         placeholder='search by title...'

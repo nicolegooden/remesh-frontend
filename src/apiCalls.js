@@ -39,3 +39,15 @@ export const postMessage = (message, conversation) => {
   .then(res => res.json())
   .catch(e => console.log(e))
 }
+
+export const postThought = (thought, message) => {
+  return fetch(`http://localhost:3000/api/v1/thoughts/${message}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(thought)
+  })
+  .then(res => res.json())
+  .catch(e => console.log(e))
+}

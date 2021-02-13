@@ -12,7 +12,7 @@ const Conversation = (props) => {
   useEffect(() => {
     getMessages(props.conversationID)
     .then(data => setMessages(data)) 
-  }, [messages, props.conversationID])
+  }, [])
 
   return (
     <article>
@@ -25,6 +25,7 @@ const Conversation = (props) => {
         <MessageContainer 
           messages={messages} 
           conversationID={conversationID}
+          setMessages={setMessages}
         />
       }
     </article>

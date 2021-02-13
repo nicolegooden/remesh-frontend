@@ -27,3 +27,15 @@ export const postConversation = (conversation) => {
   .then(res => res.json())
   .catch(e => console.log(e))
 }
+
+export const postMessage = (message, conversation) => {
+  return fetch(`http://localhost:3000/api/v1/messages/${conversation}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(message)
+  })
+  .then(res => res.json())
+  .catch(e => console.log(e))
+}

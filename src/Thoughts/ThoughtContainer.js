@@ -9,7 +9,7 @@ const ThoughtContainer = (props) => {
   const thoughtSection = () => { 
     if (thoughts.length > 0) {
       return thoughts.map(thought => {
-        const dateSent = thought.date_sent.split('T')[0];
+        const dateSent = thought.date_sent.split(' ')[0];
         return (
           <Thought 
             thoughtID={thought.thought_id}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Conversation from './Conversation.js';
 import { postConversation } from '../apiCalls.js';
 
@@ -9,7 +9,7 @@ const ConversationsContainer = (props) => {
   const [message, setMessage] = useState('');
 
   let conversations = props.conversations.map(conv => {
-    const startDate = conv.start_date.split('T')[0];
+    const startDate = conv.start_date.split(' ')[0];
     return (
       <Conversation 
         conversationID={conv.conversation_id}

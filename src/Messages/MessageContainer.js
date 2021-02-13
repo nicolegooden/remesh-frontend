@@ -9,7 +9,7 @@ const MessageContainer = (props) => {
   const messageSection = () => {
     if (messages.length > 0) {
     return messages.map(message => {
-      const dateSent = message.date_sent.split('T')[0];
+      const dateSent = message.date_sent.split(' ')[0];
       return (
         <Message 
           messageID={message.message_id}

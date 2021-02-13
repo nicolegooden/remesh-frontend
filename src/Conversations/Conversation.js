@@ -6,7 +6,8 @@ const Conversation = (props) => {
   const { title, startDate } = props;
   const [messages, setMessages] = useState([]);
   const [showingMessages, setShowingMessages] = useState(false);
-  const buttonText = showingMessages ? 'Hide Messages' : 'View Messages'
+  const messageIndicator = messages.e ? 'No messages yet' : 'View Messages';
+  const buttonText = showingMessages ? 'Hide Messages' : messageIndicator;
 
   useEffect(() => {
     getMessages(props.conversationID)

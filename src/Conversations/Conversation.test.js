@@ -8,7 +8,13 @@ import { getMessages, getThoughts } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
 describe('Conversation', () => {
-  beforeEach(() => {
+  let mockConversationID, mockStartDate, mockTitle;
+
+  beforeEach(async () => {
+    mockConversationID = 1;
+    mockStartDate = '2021-01-14';
+    mockTitle = 'Activities';
+
     getThoughts.mockResolvedValue([
       {
         thought_id: 1,
@@ -31,18 +37,15 @@ describe('Conversation', () => {
       }  
       ])
 
-    const mockConversationID = 1;
-    const mockStartDate = '2021-01-14';
-    const mockTitle = 'Activities'
+      await act(async () => {
+        await render(
+        <Conversation 
+          conversationID={mockConversationID}
+          startDate={mockStartDate}
+          title={mockTitle}
+        />
+      )})
 
-    await act(async () => {
-      await render(
-      <Conversation 
-        conversationID={mockConversationID}
-        startDate={mockStartDate}
-        title={mockTitle}
-      />
-    )})
     expect(screen.getByText('Activities')).toBeInTheDocument();
     expect(screen.getByText('2021-01-14')).toBeInTheDocument();
     expect(screen.getByRole('button', {name: 'View Messages'})).toBeInTheDocument();
@@ -59,18 +62,14 @@ describe('Conversation', () => {
       }  
       ])
 
-    const mockConversationID = 1;
-    const mockStartDate = '2021-01-14';
-    const mockTitle = 'Activities'
-
-    await act(async () => {
-      await render(
-      <Conversation 
-        conversationID={mockConversationID}
-        startDate={mockStartDate}
-        title={mockTitle}
-      />
-    )})
+      await act(async () => {
+        await render(
+        <Conversation 
+          conversationID={mockConversationID}
+          startDate={mockStartDate}
+          title={mockTitle}
+        />
+      )})
     
     let viewButton = screen.getByRole('button', {name: 'View Messages'});
     userEvent.click(viewButton);
@@ -81,5 +80,23 @@ describe('Conversation', () => {
     expect(viewButton).toBeInTheDocument();
     userEvent.click(viewButton);
     expect(screen.queryByText('I like to snowboard.')).toBeNull();
+  })
+
+  it('should indicate if a conversation doesn\'t have messages', async () => {
+    getMessages.mockResolvedValue({
+      error: 'No messages found with the conversation id 1'
+    });
+
+    await act(async () => {
+      await render(
+      <Conversation 
+        conversationID={mockConversationID}
+        startDate={mockStartDate}
+        title={mockTitle}
+      />
+    )})
+   
+    let viewButton = screen.getByRole('button', {name: 'Add First Message'});
+    expect(viewButton).toBeInTheDocument();
   })
 })

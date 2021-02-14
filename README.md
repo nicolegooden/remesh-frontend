@@ -16,7 +16,7 @@ From a new tab in the terminal CLI -
 + Run `npm start` to see and interact with the application via `localhost`
 + Run `npm test` to run the 4 available test suites. Expect to see 10 passing tests.
 
-**NOTE: The back-end repository for this project is set to run on `localhost:3000. Be prepared to see a message that states: `Something is already running on port 3000. Would you like to run the app on another port instead?` Type `y`, then your code editor will start the development build on a different port. Mine defaults to `localhost:3001`.**
+**NOTE: The back-end repository for this project is set to run on `localhost:3000`. Be prepared to see a message that states: `Something is already running on port 3000. Would you like to run the app on another port instead?` Type `y`, then your code editor will start the development build on a different port. Mine defaults to `localhost:3001`.**
 
 ### Project Specifications
 

@@ -55,7 +55,7 @@ Users should be able to...
 
 ### Next Steps
 
-+ Show the time that messages and thoughts are submitted - Right now, the date and text/title are all that show. This explanation is mentioned in greater detail in the [back-end repository](https://github.com/nicolegooden/remesh)'s README.
++ Show the time that messages and thoughts are submitted - Right now, the date and text/title are all that show. This explanation is mentioned in greater detail in the [back-end repository](https://github.com/nicolegooden/take-home-backend)'s README.
 
 + Add styling and CSS - As CSS was not permitted for this take-home assignment, it is currently very plain. Adding styling and media queries for responsiveness would make the user interface much more appealing.
 

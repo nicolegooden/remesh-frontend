@@ -7,7 +7,7 @@ import ConversationContainer from './ConversationContainer.js';
 import { postConversation, getMessages } from '../apiCalls.js';
 jest.mock('../apiCalls.js');
 
-describe.skip('ConversationContainer', () => {
+describe('ConversationContainer', () => {
   let mockConversations;
 
   beforeEach(() => {
@@ -78,6 +78,7 @@ describe.skip('ConversationContainer', () => {
     const button = screen.getByRole('button', {name: 'SUBMIT'});
     userEvent.type(input, 'East Coast');
     expect(input).toHaveValue('East Coast');
-    userEvent.click(button);
+    await waitFor(() => userEvent.click(button));
+    expect(input).toHaveValue('');
   })
 })

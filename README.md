@@ -39,4 +39,4 @@ Users should be able to...
 
 ### User Interface
 
-![Initial load](initial-load)
+![Initial load](initial-load.png)

@@ -33,15 +33,15 @@ describe('ConversationContainer', () => {
         conversation_id: 3
       }  
     ])
-  })
 
-  it('should render expected elements', async () => {
     postConversation.mockResolvedValue({
       conversation_id: 3,
       start_date: '2021-02-11 17:29:44.708606-07',
-      title: 'Beaches'     
+      title: 'East Coast'     
     })
+  })
 
+  it('should render expected elements', async () => {
     await act(async () => {
       await render(
         <ConversationContainer 
@@ -60,12 +60,6 @@ describe('ConversationContainer', () => {
   })
 
   it('should be able to create new conversations', async () => {
-    postConversation.mockResolvedValue({
-      conversation_id: 3,
-      start_date: '2021-02-11 17:29:44.708606-07',
-      title: 'East Coast'     
-    })
-
     await act(async () => {
       await render(
         <ConversationContainer 
@@ -80,5 +74,41 @@ describe('ConversationContainer', () => {
     expect(input).toHaveValue('East Coast');
     await waitFor(() => userEvent.click(button));
     expect(input).toHaveValue('');
+  })
+
+  it('should be able to search conversations by title', async () => {
+    await act(async () => {
+      await render(
+        <ConversationContainer 
+          conversations={mockConversations}
+        />
+      )
+    })
+
+    const input = screen.getByPlaceholderText('search by title...');
+
+    userEvent.type(input, 'Bernese');
+    expect(input).toHaveValue('Bernese');
+    const match1 = await waitFor(() => screen.getByText('Bernese Mountain Dogs'));
+    expect(match1).toBeInTheDocument();
+    expect(screen.queryByText('Turing')).toBeNull();
+  })
+
+  it('should be able to search conversations again', async () => {
+    await act(async () => {
+      await render(
+        <ConversationContainer 
+          conversations={mockConversations}
+        />
+      )
+    })
+
+    const input = screen.getByPlaceholderText('search by title...');
+
+    userEvent.type(input, 'Turi');
+    expect(input).toHaveValue('Turi');
+    const match2 = await waitFor(() => screen.getByText('Turing'));
+    expect(match2).toBeInTheDocument();
+    expect(screen.queryByText('Bernese Mountain Dogs')).toBeNull(); 
   })
 })

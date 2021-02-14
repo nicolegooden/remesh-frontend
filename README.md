@@ -46,3 +46,19 @@ Users should be able to...
 + Unit and Integration Testing with Hooks - I am very familiar with React Testing Library and Jest, but I have never tested functional components with React Hooks. After running into several errors and warnings stating that my tests might lead to false positives due to potentially running tests before the `useState` setter has updated the state (therefore updating the DOM), I learned how to use `act()` from `react-dom`. I wrapped my `render()` in each test suite with `act()` so that my test suite could account for the asynchronous React Hooks and accurately update the render before any assertions were made. This provides for more accurate and reliable testing!
 
 + Encapsulation - I planned this component structure such that each component is only aware of the data it needs to function as expected. For example, `App` holds onto all conversations retrieved from the database, and nothing more. Each `Conversation` holds onto its messages via a container, each `Message` holds onto its thoughts via a container, etc. I chose to make GET requests for conversations, thoughts, and messages when the information is needed by the user, but not any earlier. I believe the performance of my application is attributed to this design.
+
+### Challenges
+
++ Testing with React Hooks - As I mentioned above in the *Wins* section, I spent a lot of time doing research and cross-referencing documentation to figure out how to ensure my tests were not presenting as false positives. After some digging, I realized I needed to use `async / await` on the `act()` method itself when rendering the component for each unit test; `async / await` was also needed when performing simulated user interactions such as `type` and `click` from `userEvent`. The key to my findings is that any time a user interaction triggers a setter on `useState`, `async / await` must be wrapped around the event to ensure the following assertion will reflect any updated changes.
+
++ Dynamic Search - the search feature works well, but it is certainly not perfect! I believe that due to the asynchronous nature of React Hooks, the state of matching results updates with the second-most recent search input. For instance, if I am looking for a conversation about dogs, I might type `d` to start my search. The state of matching conversations updates based on that search after I add to my input, e.g. `do`. The search feature seems to be one step slower than it should be. This can be viewed locally in the Chrome Developer Tools for React (Components), and all state-related changes are visible from `ConversationContainer`. For now, this bug doesn't seem to make a huge impact on user experience, but can definitely be improved after I spend more time debugging.
+
+### Next Steps
+
++ Show the time that messages and thoughts are submitted - Right now, the date and text/title are all that show. This explanation is mentioned in greater detail in the [back-end repository](https://github.com/nicolegooden/remesh)'s README.
+
++ Add styling and CSS - As CSS was not permitted for this take-home assignment, it is currently very plain. Adding styling and media queries for responsiveness would make the user interface much more appealing.
+
++ Error Handling / Sad Path - Given the time constraint, there are very few implementations of error handling. A specific feature I plan to add is disabling the input field to add conversations, messages, and thoughts when the input is empty.
+
++ Add more robust test suites - `Thought` and `ThoughtContainer` are missing unit tests. As proof of concept for this take-home, I implemented similar unit tests for `Conversation` and `MessageContainer` and I plan to fill in the gaps with testing as I continue to work on this project.

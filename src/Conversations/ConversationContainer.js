@@ -20,8 +20,8 @@ const ConversationsContainer = (props) => {
     )
   })
 
-  const trackSearch = async (e) => {
-    await updateSearch(e.target.value);
+  const trackSearch = (e) => {
+    updateSearch(e.target.value);
     /* per conversation title 
      the title needs to include every letter in the convSearch
     to make the search feature more accurate */

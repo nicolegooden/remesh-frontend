@@ -20,12 +20,15 @@ const ConversationsContainer = (props) => {
     )
   })
 
-  const trackSearch = (e) => {
-    updateSearch(e.target.value);
-    // per conversation title 
-    // the title needs to include every letter in the convSearch
+  const trackSearch = async (e) => {
+    await updateSearch(e.target.value);
+    /* per conversation title 
+     the title needs to include every letter in the convSearch
+    to make the search feature more accurate */
     const matchingConvs = props.conversations.filter(conv => {
-      return conv.title.toLowerCase().includes(convSearch);
+      const title = conv.title.toLowerCase();
+      const search = convSearch.toLowerCase();
+      return title.includes(search);
     })
     setMatches(matchingConvs.map(match => {
       const startDate = match.start_date.split(' ')[0];

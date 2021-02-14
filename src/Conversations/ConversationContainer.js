@@ -28,7 +28,7 @@ const ConversationsContainer = (props) => {
       return conv.title.toLowerCase().includes(convSearch);
     })
     setMatches(matchingConvs.map(match => {
-      const startDate = match.start_date.split('T')[0];
+      const startDate = match.start_date.split(' ')[0];
       return (
         <Conversation 
           conversationID={match.conversation_id}

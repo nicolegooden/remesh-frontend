@@ -94,7 +94,7 @@ describe('ConversationContainer', () => {
     expect(screen.queryByText('Turing')).toBeNull();
   })
 
-  it('should be able to search conversations again', async () => {
+  it('should be able to search without case sensitivity', async () => {
     await act(async () => {
       await render(
         <ConversationContainer 
@@ -105,8 +105,8 @@ describe('ConversationContainer', () => {
 
     const input = screen.getByPlaceholderText('search by title...');
 
-    userEvent.type(input, 'Turi');
-    expect(input).toHaveValue('Turi');
+    userEvent.type(input, 'turi');
+    expect(input).toHaveValue('turi');
     const match2 = await waitFor(() => screen.getByText('Turing'));
     expect(match2).toBeInTheDocument();
     expect(screen.queryByText('Bernese Mountain Dogs')).toBeNull(); 

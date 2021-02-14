@@ -37,6 +37,12 @@ Users should be able to...
 + View Message Thoughts
 + Search Conversations by Title
 
-### User Interface
+### Wins
 
-![Initial load](initial-load.png)
++ Dynamic Search - As the user searches for conversations by title, matching conversations render automatically. No button needed!
+
++ React Hooks - This project consists entirely of functional components; no class-based components or `this.state`! This is the first time I have fully implemented React Hooks (mainly `useState` and `useEffect`), which has led to cleaner and more readable code.
+
++ Unit and Integration Testing with Hooks - I am very familiar with React Testing Library and Jest, but I have never tested functional components with React Hooks. After running into several errors and warnings stating that my tests might lead to false positives due to potentially running tests before the `useState` setter has updated the state (therefore updating the DOM), I learned how to use `act()` from `react-dom`. I wrapped my `render()` in each test suite with `act()` so that my test suite could account for the asynchronous React Hooks and accurately update the render before any assertions were made. This provides for more accurate and reliable testing!
+
++ Encapsulation - I planned this component structure such that each component is only aware of the data it needs to function as expected. For example, `App` holds onto all conversations retrieved from the database, and nothing more. Each `Conversation` holds onto its messages via a container, each `Message` holds onto its thoughts via a container, etc. I chose to make GET requests for conversations, thoughts, and messages when the information is needed by the user, but not any earlier. I believe the performance of my application is attributed to this design.

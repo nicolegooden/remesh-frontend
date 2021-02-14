@@ -6,7 +6,7 @@ const Message = (props) => {
   const { text, dateSent, messageID } = props;
   const [thoughts, setThoughts] = useState([]);
   const [showingThoughts, setShowingThoughts] = useState(false);
-  const messageIndicator = thoughts.e ? 'Add First Thought' : 'View Thoughts';
+  const messageIndicator = thoughts.error ? 'Add First Thought' : 'View Thoughts';
   const buttonText = showingThoughts ? 'Hide Thoughts' : messageIndicator;
 
   useEffect(() => {

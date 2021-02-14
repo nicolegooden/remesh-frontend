@@ -4,14 +4,14 @@ This is the front-end repository for my take-home project.
 
 ### Set-Up Instructions
 
-**Please start running the [back-end repository](https://github.com/nicolegooden/remesh) locally before trying to open this front-end repository.**
+**Please start running the [back-end repository](https://github.com/nicolegooden/take-home-backend) locally before trying to open this front-end repository.**
 
 After the back-end repository is up and running on port 3000: 
 
 From a new tab in the terminal CLI -
 + Ensure you are not inside of the back-end repository when you run the next command. `cd ..` if you are working from the same terminal tab and then `cd` into a different directory where you would like to save this front-end repository. 
-+ Run `git clone git@github.com:nicolegooden/remesh-frontend.git` to clone a local copy of this repo.
-+ Run `cd remesh-frontend` to change into the project directory locally.
++ Run `git clone git@github.com:nicolegooden/take-home-frontend.git` to clone a local copy of this repo.
++ Run `cd take-home-frontend` to change into the project directory locally.
 + Run `npm install` to install all dependencies included in `package.json`.
 + Run `npm start` to see and interact with the application via `localhost`
 + Run `npm test` to run the 4 available test suites. Expect to see 10 passing tests.
